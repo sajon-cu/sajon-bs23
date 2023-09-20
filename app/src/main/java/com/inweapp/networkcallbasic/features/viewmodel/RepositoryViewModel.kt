@@ -23,9 +23,8 @@ class RepositoryViewModel @Inject constructor(private val repo: GitRepository): 
     private var _repositories: MutableStateFlow<List<Repository>> = MutableStateFlow(emptyList())
     val repositories: StateFlow<List<Repository>> = _repositories
 
-    fun getRepositories(
-        result: (response: RepositoryResponse?, error: SmartError?) -> Unit
-    ) {
+    // Callback pattern may be omitted and we make it more manageable with kotlin flow api
+    fun getRepositories(result: (error: SmartError?) -> Unit) {
         viewModelScope.launch {
             var response: RepositoryResponse? = null
             var mError: SmartError? = null
@@ -39,7 +38,7 @@ class RepositoryViewModel @Inject constructor(private val repo: GitRepository): 
                 mError = error
             }
 
-            result(response, mError)
+            result(mError)
         }
     }
 

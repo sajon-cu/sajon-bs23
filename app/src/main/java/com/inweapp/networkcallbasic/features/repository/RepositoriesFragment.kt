@@ -51,13 +51,7 @@ class RepositoriesFragment : Fragment(), DummyListAdapter.Callback {
     }
 
     private fun loadRepository() {
-        repoViewModel.getRepositories { response, error ->
-            response?.let { repositories ->
-                if(!repositories.items.isNullOrEmpty()) {
-                    //dummyAdapter.submitList(repositories.items)
-                }
-            }
-
+        repoViewModel.getRepositories { error ->
             error?.let {
                 Toast.makeText(requireContext(), "Something wired happened", Toast.LENGTH_SHORT).show()
             }
