@@ -1,7 +1,9 @@
 package com.inweapp.networkcallbasic.core.data.source.remote.repositories
 
+import com.inweapp.networkcallbasic.core.utils.header
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.HeaderMap
 import retrofit2.http.Query
 
 /**
@@ -13,6 +15,8 @@ import retrofit2.http.Query
 interface RepositoryService {
     @GET("search/repositories")
     fun getAllRepository(
-        @Query("q") param: String
+        @Query("q") param: String,
+        @Query("sort") sortWith: String? = "stars",
+        @HeaderMap headers: Map<String, String>? = header
     ): Call<RepositoryResponse>
 }

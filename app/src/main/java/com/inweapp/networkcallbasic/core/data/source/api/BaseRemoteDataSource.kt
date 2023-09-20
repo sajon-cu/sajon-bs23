@@ -1,5 +1,6 @@
 package com.inweapp.networkcallbasic.core.data.source.api
 
+import android.util.Log
 import com.inweapp.networkcallbasic.core.data.source.BaseApiResponse
 import com.inweapp.networkcallbasic.core.utils.SmartError
 import retrofit2.Response
@@ -12,16 +13,21 @@ import java.net.UnknownHostException
  * Last modified $file.lastModified
  */
 abstract class BaseRemoteDataSource {
+    private val TAG = "BaseRemoteDataSource"
+
     suspend fun <T: BaseApiResponse> safeApiCall(apiToBeCalled: suspend () -> Response<T>): T? {
         try{
             val response: Response<T> = apiToBeCalled()
 
             return if(response.isSuccessful) {
-                response.body()
+                val result = response.body()
+                Log.d(TAG, "safeApiCall: $result")
+                result
             } else {
                 throw SmartError(message = "Something went wrong!")
             }
         } catch (error: Throwable) {
+            Log.d(TAG, "safeApiCall: $error")
             if(error is SmartError) throw error
             if(error is UnknownHostException) throw SmartError(
                 message = error.message,

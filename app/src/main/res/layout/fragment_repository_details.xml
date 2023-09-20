@@ -5,6 +5,7 @@
     android:id="@+id/root"
     android:background="@drawable/layout_item_round_bg"
     android:padding="8dp"
+    android:layout_margin="10dp"
     android:layout_marginBottom="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -19,8 +20,8 @@
 
         <ImageView
             android:id="@+id/ownerImageView"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,15 +30,14 @@
             android:id="@+id/tvRepoName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ownerImageView"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ownerImageView"
             tools:text="Title 1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

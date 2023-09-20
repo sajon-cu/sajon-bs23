@@ -1,10 +1,14 @@
 package com.inweapp.networkcallbasic.features.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.inweapp.networkcallbasic.core.data.models.Repository
 import com.inweapp.networkcallbasic.core.data.repositories.GitRepository
+import com.inweapp.networkcallbasic.core.data.source.remote.repositories.RepositoryResponse
 import com.inweapp.networkcallbasic.core.utils.SmartError
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,13 +20,31 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class RepositoryViewModel @Inject constructor(private val repo: GitRepository): ViewModel() {
-    fun getRepositories() {
+    private var _repositories: MutableStateFlow<List<Repository>> = MutableStateFlow(emptyList())
+    val repositories: StateFlow<List<Repository>> = _repositories
+
+    fun getRepositories(
+        result: (response: RepositoryResponse?, error: SmartError?) -> Unit
+    ) {
         viewModelScope.launch {
+            var response: RepositoryResponse? = null
+            var mError: SmartError? = null
+
             try {
-
+                response = repo.getAllRepository("android")
+                response?.items?.let {
+                    _repositories.value = it
+                }
             } catch (error: SmartError) {
-
+                mError = error
             }
+
+            result(response, mError)
         }
+    }
+
+    fun getRepoDetails(id: String?): Repository? {
+        val repositories = _repositories.value
+        return repositories.find { repo -> repo.id == id}
     }
 }

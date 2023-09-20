@@ -1,6 +1,7 @@
 package com.inweapp.networkcallbasic.core.data.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -11,6 +12,12 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class Repository(
+    val id: String? = null,
+    val name: String? = null,
+    @SerializedName("full_name")
+    val fullName: String? = null,
     val owner: User? = null,
-    val description: String? = null
+    val description: String? = null,
+    @SerializedName("updated_at")
+    val updatedAt: String? = null,
 ): Parcelable
