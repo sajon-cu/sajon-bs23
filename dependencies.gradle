@@ -1,0 +1,54 @@
+ext.versions = [
+        'compileSdk'                       : 34,
+        'minSdk'                           : 21,
+        'targetSdk'                        : 34,
+        'sourceCompat'              : JavaVersion.VERSION_1_8,
+        'targetCompat'              : JavaVersion.VERSION_1_8
+]
+
+def dagger = "2.44"
+def retrofit = "2.9.0"
+def moshi = "1.13.0"
+def room_version = '2.5.2'
+def nav_version = "2.7.2"
+
+ext.libs = [
+        gradle      : [
+//                'gradlePlugin'            : "com.android.tools.build:gradle:$gradle",
+//                'kotlinPlugin'            : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin",
+                'hiltPlugin'              : "com.google.dagger:hilt-android-gradle-plugin:$dagger"
+
+        ],
+        'androidx' : [
+                'appCompat'               : "androidx.appcompat:appcompat:1.6.1",
+                'core'                    : "androidx.core:core-ktx:1.7.0",
+                'constraintLayout'        : "androidx.constraintlayout:constraintlayout:2.1.4",
+                'fragmentKtx'             : "androidx.fragment:fragment-ktx:1.6.1",
+                'fragmentKtxRunTime'      : "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0-alpha02",
+                'lifecycleLivedata'       : "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0-alpha02",
+                'lifecycleViewModel'      : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0-alpha02",
+                'navigationFragment'      : "androidx.navigation:navigation-fragment-ktx:$nav_version",
+                'navigationUi'            : "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+        ],
+        'google'      : [
+                'material'                : "com.google.android.material:material:1.9.0"
+        ],
+        'dagger' : [
+                'hilt'                    : "com.google.dagger:hilt-android:$dagger",
+                'hiltCompiler'            : "com.google.dagger:hilt-compiler:$dagger"
+        ],
+        'squareup'    : [
+                'moshi'                  : "com.squareup.moshi:moshi-adapters:$moshi",
+                'moshiKotlin'            : "com.squareup.moshi:moshi-kotlin-codegen:$moshi",
+                'retrofit'               : "com.squareup.retrofit2:retrofit:$retrofit",
+                'retrofitMoshi'          : "com.squareup.retrofit2:converter-moshi:$retrofit",
+                'retrofitGson'           : "com.squareup.retrofit2:converter-gson:$retrofit",
+                'httpLoginInterceptor'       : "com.squareup.okhttp3:logging-interceptor:4.11.0",
+        ],
+        'room': [
+                'roomCompiler': "androidx.room:room-compiler:$room_version",
+                'roomRuntime': "androidx.room:room-runtime:$room_version",
+                'roomKtx': "androidx.room:room-ktx:$room_version",
+        ]
+]

@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.inweapp.networkcallbasic'
+    compileSdk versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.inweapp.networkcallbasic"
+        minSdk versions.minSdk
+        targetSdk versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility versions.sourceCompat
+        targetCompatibility versions.targetCompat
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core
+    implementation libs.androidx.appCompat
+    implementation libs.google.material
+    implementation libs.androidx.constraintLayout
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // ViewModel and Fragment Extension
+    implementation libs.androidx.fragmentKtx
+    implementation libs.androidx.fragmentKtxRunTime
+    implementation libs.androidx.lifecycleLivedata
+    implementation libs.androidx.lifecycleViewModel
+
+    // Navigation Component
+    implementation libs.androidx.navigationFragment
+    implementation libs.androidx.navigationUi
+
+
+    // Retrofit
+    implementation libs.squareup.retrofit
+    implementation libs.squareup.retrofitGson
+    implementation libs.squareup.httpLoginInterceptor
+
+    // Room
+    kapt libs.room.roomCompiler
+    implementation libs.room.roomRuntime
+    implementation libs.room.roomKtx
+
+    // DI
+    implementation libs.dagger.hilt
+    kapt libs.dagger.hiltCompiler
+}
