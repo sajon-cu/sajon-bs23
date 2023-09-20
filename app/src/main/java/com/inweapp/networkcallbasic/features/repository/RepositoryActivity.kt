@@ -18,7 +18,7 @@ class RepositoryActivity : AppCompatActivity() {
         setupToolbar()
 
         if(savedInstanceState == null) {
-            replaceFragment(binding.dummyPage, DummyListFragment::class.java, null, FRAGMENT_TAG)
+            replaceFragment(binding.dummyPage, RepositoriesFragment::class.java, null, FRAGMENT_TAG)
         }
 
         setContentView(binding.root)

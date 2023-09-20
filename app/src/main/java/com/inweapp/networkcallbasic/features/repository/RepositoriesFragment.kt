@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * Last modified $file.lastModified
  */
 @AndroidEntryPoint
-class DummyListFragment : Fragment(), DummyListAdapter.Callback {
+class RepositoriesFragment : Fragment(), DummyListAdapter.Callback {
     private var _binding: FragmentDummyBinding? = null
     private val binding get() = _binding!!
 
